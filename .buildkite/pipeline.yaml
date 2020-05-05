@@ -1,5 +1,7 @@
 steps:
-  - block: Build Debian?
-    if: build.env("LE_KOLIBRI_RELEASE")
-  - label: :debian:
+  - block: "Build :debian:?"
+    # Autoblock only for non-release builds.
+    if: build.env("LE_KOLIBRI_RELEASE") && build.env("LE_KOLIBRI_RELEASE") != "false"
+
+  - label: ":debian:"
     command: .buildkite/build.sh
